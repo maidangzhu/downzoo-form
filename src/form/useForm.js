@@ -46,15 +46,23 @@ class FormStore {
   };
 
   submit = () => {
-    // 校验成功 执行onFinish
-    // 校验失败 执行onFinishFailed
+    const { onFinish, onFinishFailed } = this.callbacks;
+    let err = this.validate();
+
+    if (err.length > 0) {
+      onFinishFailed(this.getFieldsValue(), err);
+    } else {
+      onFinish(this.getFieldsValue());
+    }
   };
 
   validate = () => {
     let err = [];
-    // todo 校验
+
+    // todo exec
     const store = this.getFieldsValue();
     const fieldEntities = this.fieldEntities;
+
     fieldEntities.forEach((entity) => {
       let { name, rules } = entity.props;
       let value = this.getFieldValue(name);
@@ -62,6 +70,7 @@ class FormStore {
         err.push({ name, err: rules[0].message });
       }
     });
+
     return err;
   };
 
