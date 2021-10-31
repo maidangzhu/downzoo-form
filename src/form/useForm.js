@@ -36,6 +36,7 @@ class FormStore {
       ...newStore,
     };
 
+    // 更新的时候，子组件forceUpdate
     this.fieldEntities.forEach((entity) => {
       Object.keys(newStore).forEach((k) => {
         if (k === entity.props.name) {

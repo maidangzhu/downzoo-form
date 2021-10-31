@@ -5,10 +5,11 @@ class Field extends React.Component {
   static contextType = FieldContext;
 
 	componentDidMount() {
-    // 注册
+    // 注册，并拿到取消注册的回调
     this.unregister = this.context.registerFieldEntities(this);
   }
 
+  // 取消事件注册
 	componentWillUnmount() {
     if (this.unregister) {
       this.unregister();
@@ -17,6 +18,7 @@ class Field extends React.Component {
 
 	onStoreChange = () => {
     this.forceUpdate();
+    console.log('shoud force update');
   };
 
   getControlled = () => {

@@ -30,7 +30,7 @@ export default function DownzooRcFieldForm(props) {
         <Field name="password" rules={[passwordRules]}>
           <Input placeholder="input UR Password" />
         </Field>
-        <button type="submit">Submit</button>
+        <button>Submit</button>
       </Form>
     </div>
   );
